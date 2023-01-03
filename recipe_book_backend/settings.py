@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure--f*k*@h^rz@xh0e$)@w$$!+6cnwn%c74)i7op!^oi=o@=+@=ce
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'recipes.apps.RecipesConfig',
     'rest_framework',
+    'corsheaders',
+    'register',
+    'login'
 ]
 
 MIDDLEWARE = [
@@ -52,7 +55,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
+
 ]
+
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:5173', 'http://localhost:5173']
+CORS_ALLOW_CREDENTIALS = True
+
+SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_HTTPONLY = False
+SESSION_COOKIE_DOMAIN = 'localhost'
+SESSION_COOKIE_SAMESITE = None
 
 ROOT_URLCONF = 'recipe_book_backend.urls'
 

@@ -13,11 +13,9 @@ def generate_unique_code():
     return code
 
 # Create your models here.
-class Ingredient(models.Model):
 
-    amount = models.TextField()
 
-    name = models.TextField()
+
 
 
 class Recipe(models.Model):
@@ -26,5 +24,18 @@ class Recipe(models.Model):
 
     description = models.TextField()
 
+    username = models.TextField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class Ingredient(models.Model):
+
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+
+    quantity = models.IntegerField(default=1)
+
+    unit = models.TextField(default='')
+
+    name = models.TextField()
 
     created_at = models.DateTimeField(auto_now_add=True)
